@@ -1,1 +1,3 @@
-
+Create a project that has a main window with the menu items File, Actions (Work1, Work2), and Help. 
+Selecting the Work1 menu opens a dialog window with a Static Text item, a horizontal scrolling slider, and the "Yes" and "Cancel" buttons. Changing the position of the slider changes the numbers from 0 to 100 in the Static Text field. Pressing "Yes", displays the number from the Static Text field in the main window. When you click "Cancel", the number is not displayed on the main window.
+Selecting the Work2 menu opens a dialog window with "Next" and "Cancel" buttons. The "Next" button closes the current window and opens the following dialog box with the "Back", "Yes" and "Cancel" buttons. The "Back" button opens the previous window. The "Yes" and "Cancel" buttons close the current windows.
