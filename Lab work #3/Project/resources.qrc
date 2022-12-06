@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>add-file.png</file>
+        <file>diagonal-line.png</file>
+        <file>dot.png</file>
+        <file>elipse.png</file>
+        <file>rectangular-shape-outline.png</file>
+    </qresource>
+</RCC>
