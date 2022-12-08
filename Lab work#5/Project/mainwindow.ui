@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="readFile"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Об'єкти</string>
+    </property>
+    <addaction name="drawPoint"/>
+    <addaction name="drawLine"/>
+    <addaction name="drawRect"/>
+    <addaction name="drawElipse"/>
+    <addaction name="drawLineWithElipse"/>
+    <addaction name="drawCube"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Довідка</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>Таблиця</string>
+    </property>
+    <addaction name="tableCheck"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/add-file.png</normaloff>:/img/add-file.png</iconset>
+   </property>
+   <property name="text">
+    <string>Нове полотно</string>
+   </property>
+  </action>
+  <action name="drawPoint">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/dot.png</normaloff>:/img/dot.png</iconset>
+   </property>
+   <property name="text">
+    <string>Крапка</string>
+   </property>
+  </action>
+  <action name="drawLine">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/diagonal-line.png</normaloff>:/img/diagonal-line.png</iconset>
+   </property>
+   <property name="text">
+    <string>Лінія</string>
+   </property>
+  </action>
+  <action name="drawRect">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/rectangular-shape-outline.png</normaloff>:/img/rectangular-shape-outline.png</iconset>
+   </property>
+   <property name="text">
+    <string>Прямокутник</string>
+   </property>
+  </action>
+  <action name="drawElipse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/elipse.png</normaloff>:/img/elipse.png</iconset>
+   </property>
+   <property name="text">
+    <string>Еліпс</string>
+   </property>
+  </action>
+  <action name="drawLineWithElipse">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/lineWithElipse.png</normaloff>:/img/lineWithElipse.png</iconset>
+   </property>
+   <property name="text">
+    <string>Лінія з кружечками</string>
+   </property>
+  </action>
+  <action name="drawCube">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/img/cubePNG.png</normaloff>:/img/cubePNG.png</iconset>
+   </property>
+   <property name="text">
+    <string>Куб</string>
+   </property>
+  </action>
+  <action name="tableCheck">
+   <property name="text">
+    <string>Перегляд бази</string>
+   </property>
+  </action>
+  <action name="readFile">
+   <property name="text">
+    <string>Вивести вміст</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
