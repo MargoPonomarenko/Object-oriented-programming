@@ -16,6 +16,8 @@ MyTable::MyTable(QWidget *parent)
 
 
     table = new QTableWidget;
+    connect(table, &QTableWidget::cellClicked, this, &MyTable::onCellClicked);
+    table->setEditTriggers(QTableWidget::NoEditTriggers);
     table->setFixedSize(550, 450);
     table->setColumnCount(5);
     table->setHorizontalHeaderLabels(columnLabels);
@@ -104,6 +106,12 @@ void MyTable::saveRow(QString shapeType, int x1, int y1, int x2, int y2)
     tableDataFile.close();
     qDebug() << "Writing finished";
 
+}
+
+void MyTable::onCellClicked(int row, int col)
+{
+    table->selectRow(row);
+    emit objectSelected(row);
 }
 
 

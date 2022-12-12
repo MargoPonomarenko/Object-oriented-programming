@@ -13,14 +13,18 @@ public:
 
     void drawShape(DrawType shapeType);
 
+    void onObjectSelected(int index);
+
 private:
     MyEditor *editor;
 
 private slots:
     void onShapeCreated(DrawType type, int x1, int y1, int x2, int y2);
 
+
 signals:
     void shapeCreated(DrawType type, int x1, int y1, int x2, int y2);
+
 };
 
 #endif // MYEDITORVIEW_H

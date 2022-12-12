@@ -36,6 +36,8 @@ private slots:
 
     void on_tableCheck_triggered();
 
+    void onObjectSelected(int index);
+
 private:
     Ui::MainWindow *ui;
     MyEditorView *myEditorView;

@@ -16,6 +16,11 @@ void MyEditorView::drawShape(DrawType shapeType)
     editor->selectShape(shapeType);
 }
 
+void MyEditorView::onObjectSelected(int index)
+{
+    editor->onObjectSelected(index);
+}
+
 void MyEditorView::onShapeCreated(DrawType type, int x1, int y1, int x2, int y2)
 {
     qDebug()<<"MyEditorView xs1: "<<x1;

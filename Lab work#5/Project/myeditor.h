@@ -13,6 +13,8 @@ public:
 
     void selectShape(DrawType shapeType);
 
+    void onObjectSelected(int index);
+
 private:
     MyEditor() {}
     MyEditor( const MyEditor&);
@@ -34,6 +36,7 @@ protected:
 
 private slots:
     void onShapeCreated(DrawType type, int x1, int y1, int x2, int y2);
+
 
 signals:
     void shapeCreated(DrawType type, int x1, int y1, int x2, int y2);

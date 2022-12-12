@@ -5,8 +5,9 @@
 #include <QWidget>
 #include "drawtype.h"
 
-class MyTable
+class MyTable:public QObject
 {
+    Q_OBJECT
 public:
      MyTable(QWidget *parent);
     ~MyTable();
@@ -19,6 +20,12 @@ private:
      QStringList columnLabels = {"Назва", "x1", "y1", "x2", "y2"};
      QTableWidget *table;
      void saveRow(QString shapeType, int x1, int y1, int x2, int y2);
+
+signals:
+     void objectSelected(int index);
+
+private slots:
+     void onCellClicked(int row, int col);
 
 
 

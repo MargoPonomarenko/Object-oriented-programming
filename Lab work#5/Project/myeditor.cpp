@@ -15,7 +15,18 @@ void MyEditor::selectShape(DrawType shapeType)
     drawType = shapeType;
 }
 
-void MyEditor::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void MyEditor::onObjectSelected(int index) //переглянути
+{
+    objects[index]->selectShape();
+    for(int i = 0; i < size; i++){
+        if(i !=index ){
+            objects[i]->unselectShape();
+        }
+    }
+    update();
+}
+
+void MyEditor::mousePressEvent(QGraphicsSceneMouseEvent *event) //переглянути
 {
     if(size < capasity){
         currentShape = Shape::createShape(drawType);

@@ -19,8 +19,6 @@ MainWindow::MainWindow(QWidget *parent)
     setUpToolBar();
 
 
-
-
 }
 
 MainWindow::~MainWindow()
@@ -128,7 +126,13 @@ void MainWindow::on_tableCheck_triggered()
 {
     table->clearFile();
     table = new MyTable(this);
+    connect(table, &MyTable::objectSelected, this, &MainWindow::onObjectSelected);
 
+}
+
+void MainWindow::onObjectSelected(int index)
+{
+    myEditorView->onObjectSelected(index);
 }
 
 

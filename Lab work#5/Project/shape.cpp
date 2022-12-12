@@ -70,7 +70,6 @@ Shape *Shape::createShape(DrawType type)
 void Shape::endDrawing()
 {
     qDebug()<<"Shape xs1: "<<xs1;
-    selectShape();
     emit shapeCreated(type, xs1, ys1, xs2, ys2);
 
 }
