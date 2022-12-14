@@ -18,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
     addToolBar(toolBar);
     setUpToolBar();
 
-
 }
 
 MainWindow::~MainWindow()
@@ -135,9 +134,4 @@ void MainWindow::onObjectSelected(int index)
     myEditorView->onObjectSelected(index);
 }
 
-
-void MainWindow::on_readFile_triggered()
-{
-
-}
 

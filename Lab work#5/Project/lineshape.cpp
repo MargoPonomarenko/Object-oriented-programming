@@ -44,12 +44,9 @@ void LineShape::endDrawing()
 
 QRectF LineShape::boundingRect() const
 {
-//    qreal adjust = 0.5; before
     qreal adjust = 10;
     QPointF point1(0 - adjust, 0 - adjust);
     QPointF point2(xSize() + adjust, ySize() + adjust);
-    //qDebug()<<"Bounding rect"<<xSize()<<"; "<<ySize();
-    qDebug()<<"Bounds"<<point1<<"; "<<point2;
     return QRectF(point1, point2);
 }
 
@@ -57,9 +54,6 @@ void LineShape::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    qDebug()<<"Paint Line"<< xs1<<"; "<<ys1<<"; "<<xs2<<"; "<<ys2;
-
-
     if ((xs2 >xs1 ) && (ys2>ys1)){
         x1 = 0;
         y1 = 0;
@@ -89,7 +83,6 @@ void LineShape::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     QPointF point2(x2, y2);
 
     painter->setPen(QPen(color, 2, style));
-    //painter->setBrush(color);
     painter->drawLine(point2, point1);
 }
 
@@ -97,9 +90,7 @@ QPainterPath LineShape::shape() const
 {
     QPainterPath path;
     QPointF point1(0, 0);
-//    QPointF point2(xSize(), ySize()); before
     QPointF point2(xSize() + 20, ySize() + 20);
-    //path.addRect(QRectF(point1, point2)); before
     path.addRect(QRectF(point1, point2));
     return path;
 }

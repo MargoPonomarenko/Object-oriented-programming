@@ -47,7 +47,6 @@ QRectF ElipseShape::boundingRect() const
     qreal adjust = 0.5;
     QPointF point1(0 - adjust, 0 - adjust);
     QPointF point2(xSize() + adjust, ySize() + adjust);
-    qDebug()<<"Bounding rect"<<xSize()<<"; "<<ySize();
     return QRectF(point1, point2);
 }
 
@@ -55,7 +54,6 @@ void ElipseShape::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    qDebug()<<"Paint Elipse"<< xs1<<"; "<<ys1<<"; "<<xs2<<"; "<<ys2;
     int x1,x2,y1,y2;
 
     x1 = 0;

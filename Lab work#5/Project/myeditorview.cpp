@@ -23,6 +23,5 @@ void MyEditorView::onObjectSelected(int index)
 
 void MyEditorView::onShapeCreated(DrawType type, int x1, int y1, int x2, int y2)
 {
-    qDebug()<<"MyEditorView xs1: "<<x1;
     emit shapeCreated(type, x1, y1, x2, y2);
 }

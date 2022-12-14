@@ -41,7 +41,6 @@ QRectF PointShape::boundingRect() const  //виділенян на сцені п
 
 void PointShape::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)  //метод малювання крапки
 {
-    qDebug()<<"Paint Point"<< xs1<<", "<<ys1;
     Q_UNUSED(option);
     Q_UNUSED(widget);
     painter->setBrush(Qt::black);

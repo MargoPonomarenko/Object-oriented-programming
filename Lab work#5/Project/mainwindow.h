@@ -43,15 +43,12 @@ private:
     MyEditorView *myEditorView;
     Toolbar *toolBar;
     MyTable *table;
-//    QString filename = "C:/Users/margo/Documents/QTprojects/Lab5/TableData.txt";
-
 
     void setUpToolBar();
 
 private slots:
     void onShapeCreated(DrawType type, int x1, int y1, int x2, int y2);
 
-    void on_readFile_triggered();
 
 signals:
     void shapeCreated(DrawType type, int x1, int y1, int x2, int y2);

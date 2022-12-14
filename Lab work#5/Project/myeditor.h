@@ -27,8 +27,6 @@ private:
     int size = 0;
     Shape *objects [capasity];  //масив вказівників на об'єкти типу Shape
 
-
-    // QGraphicsScene interface
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;

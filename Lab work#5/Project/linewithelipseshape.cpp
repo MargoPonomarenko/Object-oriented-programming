@@ -27,7 +27,6 @@ void LineWithElipseShape::endDrawing()
 {
     LineShape::endDrawing();
     phaze = 2;
-    //Shape::endDrawing();
 }
 
 void LineWithElipseShape::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -38,7 +37,6 @@ void LineWithElipseShape::paint(QPainter *painter, const QStyleOptionGraphicsIte
     if(phaze == 0){
         painter->setPen(QPen(Qt::blue, 2));
         painter->drawEllipse(-5, -5,  10, 10);
-        qDebug()<<"xs1: "<<xs1<<" ys1: "<<ys1<<"; "<<boundingRect();
     }
     if(phaze == 1){
         LineShape::paint(painter, option, widget);
@@ -53,7 +51,6 @@ void LineWithElipseShape::paint(QPainter *painter, const QStyleOptionGraphicsIte
         painter->setBrush(Qt::white);
         painter->drawEllipse(x1 - 5, y1 - 5,  10,  10);
         painter->drawEllipse(x2 - 5, y2 - 5,  10,  10);
-
     }
 }
 

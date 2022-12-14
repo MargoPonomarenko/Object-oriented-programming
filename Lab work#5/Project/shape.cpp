@@ -76,6 +76,7 @@ void Shape::endDrawing()
 
 void Shape::selectShape()
 {
+    qDebug()<<"Selected color: "<<color;
     selectedColor = color;
     color = Qt::magenta;
 
@@ -83,6 +84,7 @@ void Shape::selectShape()
 
 void Shape::unselectShape()
 {
+    qDebug()<<"Unselected color: "<<selectedColor;
     color = selectedColor;
 
 }

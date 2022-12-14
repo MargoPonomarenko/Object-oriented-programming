@@ -15,18 +15,20 @@ void MyEditor::selectShape(DrawType shapeType)
     drawType = shapeType;
 }
 
-void MyEditor::onObjectSelected(int index) //переглянути
+void MyEditor::onObjectSelected(int index)
 {
     objects[index]->selectShape();
+    qDebug()<<"Objects select color: "<<objects[index]->color;
     for(int i = 0; i < size; i++){
         if(i !=index ){
             objects[i]->unselectShape();
+            qDebug()<<"Objects unselect color: "<<objects[i]->color;
         }
     }
     update();
 }
 
-void MyEditor::mousePressEvent(QGraphicsSceneMouseEvent *event) //переглянути
+void MyEditor::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if(size < capasity){
         currentShape = Shape::createShape(drawType);

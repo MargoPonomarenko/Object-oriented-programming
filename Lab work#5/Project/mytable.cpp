@@ -1,19 +1,14 @@
 #include "mytable.h"
 #include "mytable.h"
 
-//#include "drawtype.h"
-
 #include <QDialog>
 
 #include <QFile>
 #include <QHBoxLayout>
+#include <QMenu>
 
 MyTable::MyTable(QWidget *parent)
 {
-//    MyTable *table = new MyTable(parent);
-
-    //connect(Shape::createShape(), &Shape::shapeCreated, table, &MyTable::onShapeCreated); BEFORE
-
 
     table = new QTableWidget;
     connect(table, &QTableWidget::cellClicked, this, &MyTable::onCellClicked);
@@ -23,8 +18,6 @@ MyTable::MyTable(QWidget *parent)
     table->setHorizontalHeaderLabels(columnLabels);
     table->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
-    //tableWidget.setColumnCount
-
     QDialog *tableWin = new QDialog(parent);
 
     QHBoxLayout *HLayout = new QHBoxLayout(tableWin);
@@ -32,11 +25,19 @@ MyTable::MyTable(QWidget *parent)
     tableWin->setLayout(HLayout);
     tableWin->show();
 
-//    KeyboardWidget *keyboardWidget = new KeyboardWidget(parent);
-//    MainWindow *window = (MainWindow *)parent;
-//    window->setKeyboardWidget(keyboardWidget);
+    //contextMenu = new QMenu(tableWin);
 
-//     ui->centralwidget->layout()->addWidget(widget);
+    tableWin->setContextMenuPolicy(Qt::CustomContextMenu);
+    contextMenu = new QMenu(tableWin);
+    QAction *deleteAction = contextMenu->addAction("Delete");
+    connect(tableWin, &QTableWidget::customContextMenuRequested, this, &MyTable::onContextMenu);
+
+
+//    tableWin->setContextMenuPolicy(Qt::ActionsContextMenu);
+//    QAction *deleteAction = new QAction("Delete");
+//    tableWin->addAction(deleteAction);
+//    connect(tableWin, &QTableWidget::customContextMenuRequested, this, &MyTable::onContextMenu); //переглянути ActionsContextMenu документацію
+
 }
 
 MyTable::~MyTable()
@@ -68,10 +69,8 @@ void MyTable::onShapeCreated(DrawType type, int x1, int y1, int x2, int y2)
         break;
 
     }
-    qDebug()<<"Shape label: "<<shapeType<<" added to table";
     table->setRowCount(table->rowCount() + 1);
     int row = table->rowCount() - 1;
-    qDebug()<<"MyTable xs1: "<<x1;
     table->setItem(row, 0, new QTableWidgetItem(shapeType));
     table->setItem(row, 1, new QTableWidgetItem(QString::number(x1)));
     table->setItem(row, 2, new QTableWidgetItem(QString::number(y1)));
@@ -112,6 +111,12 @@ void MyTable::onCellClicked(int row, int col)
 {
     table->selectRow(row);
     emit objectSelected(row);
+}
+
+void MyTable::onContextMenu(const QPoint &position)
+{
+    contextMenu->exec();
+     qDebug() << "Position: "<<position;
 }
 
 

@@ -31,6 +31,8 @@ public:
     DrawType getType() const;
     void setType(DrawType newType);
 
+    QColor color = Qt::black;
+
 protected:
     int xs1=0;
     int ys1=0;
@@ -39,8 +41,8 @@ protected:
     DrawType type;
 
     QGraphicsScene * scene;
-    QColor color = Qt::black;
-    QColor selectedColor = Qt::magenta;
+
+    QColor selectedColor = Qt::black;
 
 signals:
     void shapeCreated(DrawType type, int x1, int y1, int x2, int y2);

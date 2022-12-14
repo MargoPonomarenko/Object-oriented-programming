@@ -16,10 +16,10 @@ void RectShape::Show(QColor color)
 
 void RectShape::startDrawing(QGraphicsSceneMouseEvent *event, QGraphicsScene *scene)
 {
-    int x = event->scenePos().x();  //ініціалізація позиції x та y курсора
+    int x = event->scenePos().x();
     int y = event->scenePos().y();
     Set(x, y, x, y);
-    scene->addItem(this);  //додавання об'єкту лінія
+    scene->addItem(this);
     Show(Qt::blue);
 }
 
@@ -46,7 +46,6 @@ QRectF RectShape::boundingRect() const
     qreal adjust = 0.5;
     QPointF point1(0 - adjust - xSize() / 2, 0 - adjust - ySize() / 2);
     QPointF point2(xSize() / 2 + adjust, ySize() / 2 + adjust);
-    qDebug()<<"Bounding rect"<<xSize()<<"; "<<ySize();
     return QRectF(point1, point2);
 }
 
@@ -54,32 +53,31 @@ void RectShape::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    qDebug()<<"Paint Line"<< xs1<<"; "<<ys1<<"; "<<xs2<<"; "<<ys2;
     int x1,x2,y1,y2;
 
     if ((xs2 >xs1 ) && (ys2>ys1)){
-        qDebug()<<"1 path";
+        //qDebug()<<"1 path";
         x1 = -xSize();
         y1 = -ySize();
         x2 = xSize() + xSize() / 2;
         y2 = ySize() + ySize() / 2;
     }
     if ((xs2 <= xs1 ) && (ys2>ys1)){
-        qDebug()<<"2 path";
+        //qDebug()<<"2 path";
         x1 = 0;
         y1 = -ySize();
         x2 = xSize();
         y2 = ySize() + ySize() / 2;
     }
     if ((xs2 >xs1 ) && (ys2<=ys1)){
-        qDebug()<<"3 path";
+        //qDebug()<<"3 path";
         x1 = -xSize();
         y1 = 0;
         x2 = xSize() + xSize() / 2;
         y2 = ySize();
     }
     if ((xs2 <=xs1 ) && (ys2<=ys1)){
-        qDebug()<<"4 path";
+        //qDebug()<<"4 path";
         x1 = 0;
         y1 = 0;
         x2 = xSize();
