@@ -3118,7 +3118,9 @@ release/mytable.o: ../Lab5/mytable.cpp ../Lab5/mytable.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlayout.h \
 		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qgridlayout.h
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/QMenu \
+		C:/Qt/6.3.1/mingw_64/include/QtWidgets/qmenu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mytable.o ..\Lab5\mytable.cpp
 
 release/pointshape.o: ../Lab5/pointshape.cpp ../Lab5/pointshape.h \
