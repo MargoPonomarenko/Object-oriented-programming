@@ -19,6 +19,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
+
 private slots:
     void on_actionNew_triggered();
 
@@ -37,18 +39,22 @@ private slots:
     void on_tableCheck_triggered();
 
     void onObjectSelected(int index);
+    void onObjectDelete(int row);
 
 private:
     Ui::MainWindow *ui;
     MyEditorView *myEditorView;
     Toolbar *toolBar;
     MyTable *table;
+    QVector<QString> readFileDataArray;
 
     void setUpToolBar();
+    void drawFromFile(const QVector<QString> &data);
 
 private slots:
     void onShapeCreated(DrawType type, int x1, int y1, int x2, int y2);
 
+    void on_readFile_triggered();
 
 signals:
     void shapeCreated(DrawType type, int x1, int y1, int x2, int y2);

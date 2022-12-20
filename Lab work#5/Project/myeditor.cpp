@@ -28,6 +28,33 @@ void MyEditor::onObjectSelected(int index)
     update();
 }
 
+void MyEditor::onObjectDelete(int row)
+{
+    deleteObject(row);
+}
+
+void MyEditor::drawFromFile(const QVector<QString> &data)
+{
+   qDebug()<<"Draw from file editor";
+
+   for (const auto &record: data){
+       QStringList objects = record.split("\t");
+       qDebug()<<objects;
+   }
+}
+
+void MyEditor::deleteObject(int index)
+{
+    qDebug()<<"Object deleted";
+    this->removeItem(objects[index]);
+    delete objects[index];
+    for(int i = index; i < size - 1; i++){
+        objects[i] = objects[i + 1];
+    }
+    size--;
+    update();
+}
+
 void MyEditor::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if(size < capasity){

@@ -25,18 +25,11 @@ MyTable::MyTable(QWidget *parent)
     tableWin->setLayout(HLayout);
     tableWin->show();
 
-    //contextMenu = new QMenu(tableWin);
+    tableWin->setContextMenuPolicy(Qt::ActionsContextMenu);
+    QAction *deleteAction = new QAction("Delete");
+    connect(deleteAction, &QAction::triggered, this, &MyTable::onContextMenu);
+    tableWin->addAction(deleteAction);
 
-    tableWin->setContextMenuPolicy(Qt::CustomContextMenu);
-    contextMenu = new QMenu(tableWin);
-    QAction *deleteAction = contextMenu->addAction("Delete");
-    connect(tableWin, &QTableWidget::customContextMenuRequested, this, &MyTable::onContextMenu);
-
-
-//    tableWin->setContextMenuPolicy(Qt::ActionsContextMenu);
-//    QAction *deleteAction = new QAction("Delete");
-//    tableWin->addAction(deleteAction);
-//    connect(tableWin, &QTableWidget::customContextMenuRequested, this, &MyTable::onContextMenu); //переглянути ActionsContextMenu документацію
 
 }
 
@@ -109,14 +102,16 @@ void MyTable::saveRow(QString shapeType, int x1, int y1, int x2, int y2)
 
 void MyTable::onCellClicked(int row, int col)
 {
+
     table->selectRow(row);
     emit objectSelected(row);
 }
 
-void MyTable::onContextMenu(const QPoint &position)
+void MyTable::onContextMenu()
 {
-    contextMenu->exec();
-     qDebug() << "Position: "<<position;
+     qDebug() << "Selected row: "<<table->currentRow();
+     emit objectDelete(table->currentRow());
+     table->removeRow(table->currentRow());
 }
 
 

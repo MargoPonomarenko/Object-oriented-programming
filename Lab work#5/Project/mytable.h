@@ -22,12 +22,15 @@ private:
      void saveRow(QString shapeType, int x1, int y1, int x2, int y2);
     QMenu *contextMenu;
 
+
 signals:
-     void objectSelected(int index);
+    void objectSelected(int index);
+    void objectDelete(int row);
 
 private slots:
     void onCellClicked(int row, int col);
-    void onContextMenu(const QPoint &position);
+    void onContextMenu();
+
 
 
 };

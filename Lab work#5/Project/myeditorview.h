@@ -14,6 +14,8 @@ public:
     void drawShape(DrawType shapeType);
 
     void onObjectSelected(int index);
+    void onObjectDelete(int row);
+    void drawFromFile(const QVector<QString> &data);
 
 private:
     MyEditor *editor;

@@ -14,6 +14,8 @@ public:
     void selectShape(DrawType shapeType);
 
     void onObjectSelected(int index);
+    void onObjectDelete(int row);
+    void drawFromFile(const QVector<QString> &data);
 
 private:
     MyEditor() {}
@@ -26,6 +28,8 @@ private:
 
     int size = 0;
     Shape *objects [capasity];  //масив вказівників на об'єкти типу Shape
+
+    void deleteObject(int index);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;

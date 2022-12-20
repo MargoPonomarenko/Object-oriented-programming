@@ -3,9 +3,8 @@
 #include "scenewindow.h"
 #include "toolbar.h"
 
-
-
 #include <QToolBar>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     QApplication::instance()->setAttribute(Qt::AA_DontShowIconsInMenus, true);
+    myEditorView = nullptr;
 
     toolBar = new Toolbar(this);
     addToolBar(toolBar);
@@ -115,6 +115,16 @@ void MainWindow::setUpToolBar()
     toolBar->addAction(ui->drawCube);
 }
 
+void MainWindow::drawFromFile(const QVector<QString> &data )
+{
+    qDebug()<<"Draw from file mainwindow";
+    if(myEditorView == nullptr){
+        myEditorView = createEditor(this);
+    }
+    myEditorView->drawFromFile(data);
+
+}
+
 void MainWindow::onShapeCreated(DrawType type, int x1, int y1, int x2, int y2)
 {
     table->onShapeCreated(type, x1, y1, x2, y2);
@@ -126,7 +136,7 @@ void MainWindow::on_tableCheck_triggered()
     table->clearFile();
     table = new MyTable(this);
     connect(table, &MyTable::objectSelected, this, &MainWindow::onObjectSelected);
-
+    connect(table, &MyTable::objectDelete, this, &MainWindow::onObjectDelete);
 }
 
 void MainWindow::onObjectSelected(int index)
@@ -134,4 +144,32 @@ void MainWindow::onObjectSelected(int index)
     myEditorView->onObjectSelected(index);
 }
 
+void MainWindow::onObjectDelete(int row)
+{
+    myEditorView->onObjectDelete(row);
+}
+
+void MainWindow::on_readFile_triggered()
+{
+    QString fileToRead;
+    fileToRead = QFileDialog::getOpenFileName(this, tr("Open txt to read"), QDir::currentPath(), tr("Text Files (*.txt)"));
+
+    QFile readFileData(fileToRead);
+    if(!readFileData.open(QIODevice::ReadOnly)){
+        return;
+    }
+
+    QTextStream textRead(&readFileData);
+    while(!textRead.atEnd()){
+        if( readFileDataArray.size() < capasity){
+            readFileDataArray.append(textRead.readLine());
+        }
+    }
+    readFileData.close();
+    for (auto record: readFileDataArray){
+        qDebug() << record;
+    }
+    qDebug() << "Reading finished ";
+    drawFromFile(readFileDataArray);
+}
 
