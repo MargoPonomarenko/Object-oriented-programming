@@ -21,6 +21,7 @@ private:
      QTableWidget *table;
      void saveRow(QString shapeType, int x1, int y1, int x2, int y2);
     QMenu *contextMenu;
+    void saveTable();
 
 
 signals:

@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     QApplication::instance()->setAttribute(Qt::AA_DontShowIconsInMenus, true);
     myEditorView = nullptr;
-
+    table = nullptr;
     toolBar = new Toolbar(this);
     addToolBar(toolBar);
     setUpToolBar();
@@ -127,8 +127,9 @@ void MainWindow::drawFromFile(const QVector<QString> &data )
 
 void MainWindow::onShapeCreated(DrawType type, int x1, int y1, int x2, int y2)
 {
-    table->onShapeCreated(type, x1, y1, x2, y2);
-
+    if(table != nullptr){
+        table->onShapeCreated(type, x1, y1, x2, y2);
+    }
 }
 
 void MainWindow::on_tableCheck_triggered()
@@ -137,6 +138,13 @@ void MainWindow::on_tableCheck_triggered()
     table = new MyTable(this);
     connect(table, &MyTable::objectSelected, this, &MainWindow::onObjectSelected);
     connect(table, &MyTable::objectDelete, this, &MainWindow::onObjectDelete);
+    const QVector<MyShapes::Shape *> objects = myEditorView->getObjects();
+    qDebug()<<"Objects count: "<<objects.count();
+    if(objects.count() != 0){
+        for(const MyShapes::Shape * object: objects){
+            table->onShapeCreated(object->getType(), object->getXs1(), object->getYs1(), object->getXs2(), object->getYs2());
+        }
+    }
 }
 
 void MainWindow::onObjectSelected(int index)

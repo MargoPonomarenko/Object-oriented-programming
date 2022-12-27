@@ -3,7 +3,6 @@
 
 #include <QGraphicsSceneMouseEvent>
 
-
 MyEditor &MyEditor::getInstance()
 {
     static MyEditor instance;
@@ -36,11 +35,42 @@ void MyEditor::onObjectDelete(int row)
 void MyEditor::drawFromFile(const QVector<QString> &data)
 {
    qDebug()<<"Draw from file editor";
-
+   QStringList objectsRead;
    for (const auto &record: data){
-       QStringList objects = record.split("\t");
-       qDebug()<<objects;
+       //StringList objectsRead = record.split("\t");
+       objectsRead = record.split("\t");
+       qDebug()<< objectsRead;
+       if(size < capasity){
+           currentShape = createShape(objectsRead.at(0));
+           connect(currentShape, &Shape::shapeCreated, this, &MyEditor::onShapeCreated);
+           int xp1 = objectsRead.at(1).toInt();
+           int yp1 = objectsRead.at(2).toInt();
+           int xp2 = objectsRead.at(3).toInt();
+           int yp2 = objectsRead.at(4).toInt();
+
+           currentShape->Set(xp1, yp1, xp2, yp2);
+           addItem(currentShape);
+           currentShape->Show(Qt::black);
+           update();
+           objects[size] = currentShape;
+           size++;
+       }
+       //connect(currentShape, &Shape::shapeCreated, this, &MyEditor::onShapeCreated);
    }
+}
+
+const QVector<MyShapes::Shape *> MyEditor::getObjects()
+{
+    QVector<MyShapes::Shape *> objects;
+    for(int i=0; i<size; i++){
+        objects.append(this->objects[i]);
+    }
+    return objects;
+}
+
+MyEditor::MyEditor()
+{
+    initConverter();
 }
 
 void MyEditor::deleteObject(int index)
@@ -53,6 +83,22 @@ void MyEditor::deleteObject(int index)
     }
     size--;
     update();
+}
+
+
+Shape *MyEditor::createShape(QString strType)
+{
+    return Shape::createShape(shapeConvert[strType]);
+}
+
+void MyEditor::initConverter()
+{
+    shapeConvert["Point"] = DrawType::POINT;
+    shapeConvert["Line"] = DrawType::LINE;
+    shapeConvert["Rect"] = DrawType::RECT;
+    shapeConvert["Elipse"] = DrawType::ELIPSE;
+    shapeConvert["LineWithElipse"] = DrawType::LINEWITHELIPSE;
+    shapeConvert["Cube"] = DrawType::CUBE;
 }
 
 void MyEditor::mousePressEvent(QGraphicsSceneMouseEvent *event)

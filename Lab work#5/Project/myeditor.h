@@ -3,6 +3,7 @@
 #include <QGraphicsScene>
 #include "shape.h"
 
+using namespace MyShapes;
 const int capasity = 129;
 
 class MyEditor: public QGraphicsScene
@@ -16,9 +17,10 @@ public:
     void onObjectSelected(int index);
     void onObjectDelete(int row);
     void drawFromFile(const QVector<QString> &data);
+    const QVector<MyShapes::Shape *> getObjects();
 
 private:
-    MyEditor() {}
+    MyEditor();
     MyEditor( const MyEditor&);
     MyEditor& operator=( MyEditor& );
 
@@ -27,9 +29,13 @@ private:
     Shape *currentShape;
 
     int size = 0;
-    Shape *objects [capasity];  //масив вказівників на об'єкти типу Shape
+    MyShapes::Shape *objects [capasity];  //масив вказівників на об'єкти типу Shape
 
     void deleteObject(int index);
+
+    Shape * createShape(QString strType);
+    QMap<QString, DrawType> shapeConvert;
+    void initConverter();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;

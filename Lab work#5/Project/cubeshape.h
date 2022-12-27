@@ -3,6 +3,7 @@
 #include "lineshape.h"
 #include "rectshape.h"
 
+using namespace MyShapes;
 class CubeShape:  public LineShape
 {
     Q_OBJECT

@@ -2,6 +2,7 @@
 #define LINESHAPE_H
 #include "shape.h"
 
+using namespace MyShapes;
 class LineShape: public Shape
 {
     Q_OBJECT

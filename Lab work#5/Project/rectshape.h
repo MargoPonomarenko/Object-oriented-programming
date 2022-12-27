@@ -2,6 +2,7 @@
 #define RECTSHAPE_H
 #include "shape.h"
 
+using namespace MyShapes;
 class RectShape: public Shape
 {
     Q_OBJECT

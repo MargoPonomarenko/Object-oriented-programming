@@ -3,6 +3,7 @@
 #include "lineshape.h"
 #include "elipseshape.h"
 
+using namespace MyShapes;
 class LineWithElipseShape:  public LineShape
 {
     Q_OBJECT

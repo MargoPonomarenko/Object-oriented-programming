@@ -16,6 +16,7 @@ public:
     void onObjectSelected(int index);
     void onObjectDelete(int row);
     void drawFromFile(const QVector<QString> &data);
+    const QVector<MyShapes::Shape *> getObjects();
 
 private:
     MyEditor *editor;

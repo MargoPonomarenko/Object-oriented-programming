@@ -98,3 +98,5 @@ void Shape::setType(DrawType newType)
 {
     type = newType;
 }
+
+

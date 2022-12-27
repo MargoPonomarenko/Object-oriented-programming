@@ -2,7 +2,7 @@
 #include "mytable.h"
 
 #include <QDialog>
-
+#include <QString>
 #include <QFile>
 #include <QHBoxLayout>
 #include <QMenu>
@@ -100,6 +100,18 @@ void MyTable::saveRow(QString shapeType, int x1, int y1, int x2, int y2)
 
 }
 
+void MyTable::saveTable()
+{
+    clearFile();
+    for(int i=0; i < table->rowCount(); i++){
+        int x1 = table->item(i, 1)->text().toInt();
+        int y1 = table->item(i, 2)->text().toInt();
+        int x2 = table->item(i, 3)->text().toInt();
+        int y2 = table->item(i, 4)->text().toInt();
+        saveRow(table->item(i, 0)->text(), x1, y1, x2, y2);
+    }
+}
+
 void MyTable::onCellClicked(int row, int col)
 {
 
@@ -112,6 +124,7 @@ void MyTable::onContextMenu()
      qDebug() << "Selected row: "<<table->currentRow();
      emit objectDelete(table->currentRow());
      table->removeRow(table->currentRow());
+     saveTable();
 }
 
 

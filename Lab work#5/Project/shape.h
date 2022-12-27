@@ -4,6 +4,8 @@
 #include <QObject>
 #include "drawtype.h"
 
+QT_BEGIN_NAMESPACE
+namespace MyShapes {
 
 class Shape:public QObject, public QGraphicsItem
 {
@@ -21,6 +23,7 @@ public:
     int getYs2() const;
 
     static Shape * createShape(DrawType type);
+
     virtual void startDrawing(QGraphicsSceneMouseEvent *event, QGraphicsScene * scene) {};
     virtual void drawRubberFootprint(QGraphicsSceneMouseEvent *event) {}
     virtual void endDrawing();
@@ -44,9 +47,13 @@ protected:
 
     QColor selectedColor = Qt::black;
 
+
 signals:
     void shapeCreated(DrawType type, int x1, int y1, int x2, int y2);
 
 };
+
+}
+QT_END_NAMESPACE
 
 #endif // SHAPE_H

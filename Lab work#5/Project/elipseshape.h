@@ -2,6 +2,7 @@
 #define ELIPSESHAPE_H
 #include "shape.h"
 
+using namespace MyShapes;
 class ElipseShape: public Shape
 {
     Q_OBJECT
